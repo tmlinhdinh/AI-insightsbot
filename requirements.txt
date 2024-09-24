@@ -1,9 +1,9 @@
 chainlit==0.7.700
-langchain 
-langchain-core==0.2.38 
-langchain-community==0.2.16 
-langchain-text-splitters 
-langchain-openai 
-langchain-qdrant 
+langchain
+langchain-community
+langchain-core
+langchain-openai
+langchain-qdrant
+langchain-text-splitters
 qdrant-client
-pymupdf
+PyMuPDF

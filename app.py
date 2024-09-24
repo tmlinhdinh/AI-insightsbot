@@ -62,8 +62,7 @@ rag_documents_2 = PyMuPDFLoader(file_path=DATA_LINK2).load()
 
 chunked_rag_documents = chunk_documents(rag_documents_1, CHUNK_SIZE, CHUNK_OVERLAP) + \
                         chunk_documents(rag_documents_2, CHUNK_SIZE, CHUNK_OVERLAP)
-
-
+                            
 @cl.on_chat_start
 async def on_chat_start():
     embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
@@ -79,8 +78,6 @@ async def on_chat_start():
 
     cl.user_session.set("chain", rag_chain)
     
-
-
 # Chainlit app
 @cl.on_message
 async def main(message):
