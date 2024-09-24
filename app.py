@@ -63,22 +63,31 @@ rag_documents_2 = PyMuPDFLoader(file_path=DATA_LINK2).load()
 chunked_rag_documents = chunk_documents(rag_documents_1, CHUNK_SIZE, CHUNK_OVERLAP) + \
                         chunk_documents(rag_documents_2, CHUNK_SIZE, CHUNK_OVERLAP)
 
-embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-retriever = build_retriever(chunked_rag_documents, embeddings, COLLECTION_NAME)
 
-rag_prompt = ChatPromptTemplate.from_template(RAG_PROMPT)
-qa_llm = ChatOpenAI(model=QA_MODEL)
+@cl.on_chat_start
+async def on_chat_start():
+    embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+    retriever = build_retriever(chunked_rag_documents, embeddings, COLLECTION_NAME)
 
-rag_chain = (
-    {"context": itemgetter("question") | retriever, "question": itemgetter("question")}
-    | rag_prompt | llm | StrOutputParser()
-)
+    rag_prompt = ChatPromptTemplate.from_template(RAG_PROMPT)
+    qa_llm = ChatOpenAI(model=QA_MODEL)
+
+    rag_chain = (
+        {"context": itemgetter("question") | retriever, "question": itemgetter("question")}
+        | rag_prompt | qa_llm | StrOutputParser()
+    )
+
+    cl.user_session.set("chain", rag_chain)
+    
+
 
 # Chainlit app
 @cl.on_message
-async def main(message: str):
-    response = rag_chain.invoke({"question": message})
+async def main(message):
+    chain = cl.user_session.get("chain")
+    result = chain.invoke({"question" : message.content})
+
     await cl.Message(
-        content=response["response"],  # Extract the response from the chain
+        content=result,  # Extract the response from the chain
         author="AI"
     ).send()
