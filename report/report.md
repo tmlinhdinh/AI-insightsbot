@@ -19,11 +19,7 @@ I would also like to test out **Semantic Chunking** because it focuses on dividi
 # Task 2: Building a Quick End-to-End Prototype
 
 ### 1. Build a prototype and deploy to a Hugging Face Space, and create a short (< 2 min) loom video demonstrating some initial testing inputs and outputs.
-<<<<<<< HEAD
 Loom link: https://www.loom.com/share/2ee6825aed60424da6aadc414bbc800a?sid=1994ecda-c52e-4e71-afe9-166e862296e4
-=======
-Link: 
->>>>>>> e107018 (add report)
 
 ### 2. How did you choose your stack, and why did you select each tool the way you did?
 I built a Retrieval-Augmented Generation (RAG) system with:
@@ -44,10 +40,6 @@ Each tool was selected to balance performance, scalability, and efficiency for t
 ![](./ragas_prototype.png)
 
 ### 2. What conclusions can you draw about performance and effectiveness of your pipeline with this information?
-The pipeline shows strong retrieval performance but needs improvement in generating accurate answers:
-
-<<<<<<< HEAD
-### What conclusions can you draw about performance and effectiveness of your pipeline with this information?
 
 The pipeline demonstrates reasonably strong retrieval capabilities but reveals areas for improvement in the accuracy and relevance of generated answers:
 
@@ -58,57 +50,31 @@ The pipeline demonstrates reasonably strong retrieval capabilities but reveals a
 
 ### Summary:
 - The pipeline is doing well at retrieving relevant context, but the generation of accurate and faithful answers needs refinement. This suggests a potential need for either a more advanced QA model or improvements in how retrieved chunks are passed to the answer generation process.
-=======
-### Strengths:
-- **Context Recall (92.2%)** and **Precision (91.9%)** are high, meaning the system effectively retrieves relevant information.
-- **Faithfulness (75.9%)** indicates that the generated answers are mostly grounded in retrieved data.
-
-### Weaknesses:
-- **Answer Correctness (52.6%)** and **Relevancy (67.6%)** need improvement, as the system struggles to generate consistently correct and relevant responses.
-
-**Summary**: Retrieval is excellent, but the QA generation needs refinement for more accurate answers.
->>>>>>> e107018 (add report)
 
 # Task 4: Fine-Tuning Open-Source Embeddings
 
 ### 1. Swap out your existing embedding model for the new fine-tuned version.  Provide a link to your fine-tuned embedding model on the Hugging Face Hub.
-<<<<<<< HEAD
 Fine-tuning model link: https://huggingface.co/ldldld/snowflake-arctic-embed-m-finetuned
 
 ### 2. How did you choose the embedding model for this application?
 I selected `Snowflake/snowflake-arctic-embed-m` as the model for fine-tuning. To make this choice, I referred to the `mteb/leaderboard`, filtered for models with fewer than 250M parameters. Then I looked at all the top ranking models, filtered out models from personal accounts and models that require me to execute some suspicious executable. That ultimately left me with `Snowflake/snowflake-arctic-embed-m`, which is actually the one we used in class.
-=======
-
-### 2. How did you choose the embedding model for this application?
->>>>>>> e107018 (add report)
 
 # Task 5: Assessing Performance
 
 ### 1. Test the fine-tuned embedding model using the RAGAS frameworks to quantify any improvements.  Provide results in a table.
-<<<<<<< HEAD
 ![](./ragas_finetune.png)
 
 It seems that off-the-shelve embedding model from OpenAI `text-embedding-3-small` is still better for our RAG, which honestly isn't too surprising. 
-=======
->>>>>>> e107018 (add report)
 
 ### 2. Test the two chunking strategies using the RAGAS frameworks to quantify any improvements. Provide results in a table. 
 
 ### 3. The AI Solutions Engineer asks you “Which one is the best to test with internal stakeholders next week, and why?”
-<<<<<<< HEAD
 The original prototype is ideal for testing with internal stakeholders next week: it offers strong performance and is straightforward to implement. The only drawback is that it's not open-sourced. If this is a critical requirement, we can confirm with stakeholders and then explore the fine-tuning path. Based on initial results, we could likely fine-tune open-source models to achieve performance similar to that of OpenAI's `text-embedding-3-small`.
-=======
->>>>>>> e107018 (add report)
 
 # Task 6: Managing Your Boss and User Expectations
 
 ### 1. What is the story that you will give to the CEO to tell the whole company at the launch next month?
-<<<<<<< HEAD
 We're excited to introduce our **AI Industry Insights chatbot**, designed to provide real-time, nuanced guidance on the rapidly evolving impact of AI—especially in the context of politics and ethical enterprise applications. As we move through an election cycle and navigate the uncertainties around AI regulations, our chatbot empowers users to stay informed and make confident decisions. The tool leverages cutting-edge technology, offering insightful, up-to-date information on how AI is shaping industries and government policies. It’s a reliable companion for anyone looking to understand the future of AI in business and governance.
 
 ### 2. There appears to be important information not included in our build, for instance, the 270-day update on the 2023 executive order on Safe, Secure, and Trustworthy AI.  How might you incorporate relevant white-house briefing information into future versions? 
 I'd add the new relevant white-house briefing information into the QDrant vectorstore. Then depending on if we use an open-sourced model or not, I'd proceed with re-finetuning the embedding model and evaluate with RAGAS.
-=======
-
-### 2. There appears to be important information not included in our build, for instance, the 270-day update on the 2023 executive order on Safe, Secure, and Trustworthy AI.  How might you incorporate relevant white-house briefing information into future versions? 
->>>>>>> e107018 (add report)
